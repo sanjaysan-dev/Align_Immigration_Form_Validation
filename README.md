@@ -99,15 +99,6 @@ If you open the `index.html`, you’ll see:
 - Clear validation feedback when submitting
 
 ---
-
-### ⭐ Don’t forget
-If you upload this to GitHub, add:
-```bash
-git add .
-git commit -m "Add Alien Immigration Portal project"
-git push origin main
-
-
 ## 📸 Project Preview
 
 Below is a screenshot of the working **Alien Immigration Portal** form:
@@ -118,4 +109,14 @@ Below is a screenshot of the working **Alien Immigration Portal** form:
 Alternatively, if you’re using GitHub Pages or a public link, you can replace the path above with your hosted image URL.
 
 ---
+
+### ⭐ Don’t forget
+If you upload this to GitHub, add:
+```bash
+git add .
+git commit -m "Add Alien Immigration Portal project"
+git push origin main
+
+
+
 
