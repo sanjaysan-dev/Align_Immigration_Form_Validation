@@ -103,7 +103,7 @@ If you open the `index.html`, you’ll see:
 
 Below is a screenshot of the working **Alien Immigration Portal** form:
 
-![Alien Immigration Portal Screenshot](./images/output.png)
+![Alien Immigration Portal Screenshot](From_Validation/images/output.png)
 <!-- If your image is in the same directory as README.md, use: ![Preview](./output.png) -->
 
 Alternatively, if you’re using GitHub Pages or a public link, you can replace the path above with your hosted image URL.
