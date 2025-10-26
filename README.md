@@ -78,7 +78,7 @@ This project helps you understand:
 
 ## 👨‍💻 Author
 
-**Developer:** Your Name  
+**Developer:** San  
 **Project Type:** Educational / Fun Web Project  
 **Version:** 1.0.0  
 **Languages Used:** HTML, CSS, JavaScript  
