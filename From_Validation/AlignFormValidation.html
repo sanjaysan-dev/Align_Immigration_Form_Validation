@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alien Immigration Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #29a3f5;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container{
+        background-color: azure;
+        padding: 25px;
+        border-radius: 10px;
+        max-width: 500px;
+        margin: 40px auto;
+        box-shadow: 0 0 10px rgb(0, 0, 0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0066cc;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+
+    input:focus, select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .error {
+      border-color: #e60000;
+    }
+
+    .error-message {
+      color: #e60000;
+      font-size: 13px;
+      margin-top: 4px;
+      display: none;
+    }
+  </style>>
+</head>
+<body>
+    <div class="container">
+  <h1>Alien Immigration Portal</h1>
+  <form id="alienForm" novalidate>
+    
+    <div class="form-group">
+      <label for="planetName">Planet Name 🪐</label>
+      <input type="text" id="planetName" name="planetName" placeholder="e.g. Xylo9">
+      <span class="error-message" id="planetNameError">Planet name must contain at least one vowel and one digit.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="antennaCount">Antenna Count 🦻</label>
+      <input type="number" id="antennaCount" name="antennaCount" placeholder="Enter even number">
+      <span class="error-message" id="antennaCountError">Only even numbers are allowed.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="alienID">Alien ID 👽</label>
+      <input type="text" id="alienID" name="alienID" placeholder="Format: ZOR-XY_9999@UFO">
+      <span class="error-message" id="alienIDError">Alien ID must match the format ZOR-XY_9999@UFO.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="phrase">Favorite Human Phrase 💬</label>
+      <input type="text" id="phrase" name="phrase" placeholder="e.g. Hello World! 😊">
+      <span class="error-message" id="phraseError">Phrase must contain at least one emoji or punctuation mark.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="landingDate">Landing Date 🛸</label>
+      <input type="date" id="landingDate" name="landingDate">
+      <span class="error-message" id="landingDateError">Landing date cannot be in the past.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="speciesType">Species Type 🌌</label>
+      <select id="speciesType" name="speciesType">
+        <option value="">-- Select Your Type --</option>
+        <option value="humanoid">Humanoid</option>
+        <option value="reptilian">Reptilian</option>
+        <option value="cybernetic">Cybernetic</option>
+        <option value="energy-being">Energy Being</option>
+      </select>
+      <span class="error-message" id="speciesTypeError">Please select your species type.</span>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+  </div>
+
+  <script>
+    document.getElementById('alienForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      let isValid = true;
+      let firstInvalidField = null;
+
+      const fields = ['planetName', 'antennaCount', 'alienID', 'phrase', 'landingDate', 'speciesType'];
+      fields.forEach(id => {
+        const field = document.getElementById(id);
+        field.classList.remove('error');
+        document.getElementById(id + 'Error').style.display = 'none';
+      });
+
+    
+      const planetName = document.getElementById('planetName');
+      const planetRegex = /^(?=.*[aeiouAEIOU])(?=.*\d)[A-Za-z0-9]+$/;
+      if (!planetRegex.test(planetName.value.trim())) {
+        showError(planetName);
+      }
+
+    
+      const antennaCount = document.getElementById('antennaCount');
+      const antennaVal = parseInt(antennaCount.value);
+      if (isNaN(antennaVal) || antennaVal % 2 !== 0) {
+        showError(antennaCount);
+      }
+
+
+      const alienID = document.getElementById('alienID');
+      const alienRegex = /^ZOR-[A-Z]{2}_[0-9]{4}@UFO$/;
+      if (!alienRegex.test(alienID.value.trim())) {
+        showError(alienID);
+      }
+
+    
+      const phrase = document.getElementById('phrase');
+      const phraseRegex = /[!@#$%^&*(),.?":{}|<>]|[\u{1F300}-\u{1FAFF}]/u;
+      if (!phraseRegex.test(phrase.value.trim())) {
+        showError(phrase);
+      }
+
+
+      const landingDate = document.getElementById('landingDate');
+      const today = new Date();
+      const selectedDate = new Date(landingDate.value);
+      today.setHours(0,0,0,0);
+      if (!landingDate.value || selectedDate < today) {
+        showError(landingDate);
+      }
+
+    
+      const speciesType = document.getElementById('speciesType');
+      if (speciesType.value === "") {
+        showError(speciesType);
+      }
+
+    
+      function showError(field) {
+        field.classList.add('error');
+        document.getElementById(field.id + 'Error').style.display = 'block';
+        if (!firstInvalidField) firstInvalidField = field;
+        isValid = false;
+      }
+
+      if (firstInvalidField) {
+        firstInvalidField.focus();
+      }
+
+      if (isValid) {
+        alert("🛸 Alien Registration Successful! Welcome to Earth 🌍");
+        this.reset();
+      }
+    });
+  </script>
+</body>
+</html>
